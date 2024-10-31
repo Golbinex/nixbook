@@ -80,9 +80,13 @@ networking.firewall = {
 ```
 # ARM64 hardware
 ### Create bootable ARM64 ISO for Rockchip SBCs
+Edit `configuration.nix`
+```
+boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+```
 Download `iso.nix`, then
 ```
-nix-shell -p nixos-generators --run "nixos-generate --format iso --configuration ./iso.nix -o result"
+nix-shell -p nixos-generators --run "nixos-generate --format iso --system aarch64-linux --configuration ./iso.nix -o result"
 ```
 ### HDMI output for Rockchip SBCs
 ```
