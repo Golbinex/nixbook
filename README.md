@@ -1,5 +1,5 @@
 # System
-### Automatic ugprades + garbage collector
+### Automatic ugprades + garbage collector + automatic optimization
 ```
 system.autoUpgrade.enable = true;
 nix.gc = {
@@ -7,6 +7,7 @@ nix.gc = {
   dates = "weekly";
   options = "--delete-older-than 7d";
 };
+nix.optimise.automatic = true;
 ```
 ### NTFY Notifications for required reboot after upgrade
 Put `nixos-needsreboot.nix` to `/etc/nixos/`
@@ -77,6 +78,10 @@ networking.firewall = {
     iptables -A nixos-fw --protocol all --src YOUR_IP_ADDRESS -j nixos-fw-accept
   ";
 };
+```
+### Load kernel modules for WireGuard (wg-quick) in hardened profile
+```
+boot.kernelModules = [ "wireguard" "xt_mark" "xt_comment" "xt_multiport" "xt_addrtype" "xt_connmark" "iptable_nat" ];
 ```
 # ARM64 hardware
 ### Create bootable ARM64 ISO for Rockchip SBCs
