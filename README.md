@@ -70,6 +70,12 @@ in
     fdroidserver2
   ];
 ```
+### Printer and scanner support for Canon
+```
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.cnijfilter2 ];
+  hardware.sane.enable = true; # enables support for SANE scanners
+```
 # Network
 ### Whitelist IP address in firewall
 ```
